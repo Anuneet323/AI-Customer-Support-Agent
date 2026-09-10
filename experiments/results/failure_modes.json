@@ -1,0 +1,62 @@
+[
+  {
+    "rank": 1,
+    "name": "escalation_error",
+    "frequency": 86,
+    "frequency_pct": 43.0,
+    "worst_example": {
+      "id": "gold_079",
+      "customer_message": "where package???",
+      "gold_intent": "delivery_issue",
+      "predicted_intent": "delivery_issue",
+      "gold_escalate": false,
+      "predicted_escalate": true,
+      "reply": "Thank you for contacting AmazonHelp. We apologize for the inconvenience. Please give it until end of day today, and if it still doesn't arrive, we will arrange a full replacement or refund. Please let us know if you need any additional assistance.",
+      "judge_overall": "N/A",
+      "intent_confidence": 0.7108371479773375,
+      "evidence_quality": "OK"
+    },
+    "pattern": "Escalation decision was wrong (unnecessary escalation or missed escalation). May indicate threshold miscalibration.",
+    "proposed_fix": "Re-examine threshold calibration on validation set. Check if specific intents are systematically mis-escalated."
+  },
+  {
+    "rank": 2,
+    "name": "false_auto_handle",
+    "frequency": 26,
+    "frequency_pct": 13.0,
+    "worst_example": {
+      "id": "gold_038",
+      "customer_message": "Why was I charged $59.87?",
+      "gold_intent": "billing_payment_issue",
+      "predicted_intent": "billing_payment_issue",
+      "gold_escalate": true,
+      "predicted_escalate": false,
+      "reply": "Thank you for contacting AmazonHelp. Please check Your Account > Your Payments > Transactions for detailed breakdown. For unrecognized charges, we will investigate with our billing team. Please let us know if you need any additional assistance.",
+      "judge_overall": "N/A",
+      "intent_confidence": 0.8158188401730889,
+      "evidence_quality": "OK"
+    },
+    "pattern": "System auto-handled a message that required human escalation. Most dangerous failure \u2014 customer gets wrong/insufficient help.",
+    "proposed_fix": "Lower escalation threshold for low-evidence cases. Add explicit check: if resolution_confidence='low', always escalate."
+  },
+  {
+    "rank": 3,
+    "name": "low_confidence_misclassification",
+    "frequency": 8,
+    "frequency_pct": 4.0,
+    "worst_example": {
+      "id": "gold_007",
+      "customer_message": "I returned my package 7 days ago with tracking but still no refund on my card.",
+      "gold_intent": "order_cancellation_return",
+      "predicted_intent": "delivery_issue",
+      "gold_escalate": false,
+      "predicted_escalate": true,
+      "reply": "Thank you for contacting AmazonHelp. To return your item, go to Your Orders, select the item, and click Return or Replace Items to generate a prepaid label. Please let us know if you need any additional assistance.",
+      "judge_overall": "N/A",
+      "intent_confidence": 0.43407045888052914,
+      "evidence_quality": "INTENT_MISMATCH"
+    },
+    "pattern": "Classifier was uncertain (low confidence) AND wrong. These should ideally be caught by the escalation policy.",
+    "proposed_fix": "Ensure confidence_threshold is high enough to catch these. If threshold is already 0.65+, investigate why classification was uncertain."
+  }
+]

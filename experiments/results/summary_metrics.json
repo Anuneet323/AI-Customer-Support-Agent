@@ -1,0 +1,526 @@
+{
+  "proposed": {
+    "intent": {
+      "accuracy": 0.96,
+      "macro_f1": 0.9616,
+      "weighted_f1": 0.9597,
+      "per_intent": {
+        "account_access_issue": {
+          "precision": 0.963,
+          "recall": 1.0,
+          "f1": 0.9811,
+          "support": 26
+        },
+        "billing_payment_issue": {
+          "precision": 0.9,
+          "recall": 0.9643,
+          "f1": 0.931,
+          "support": 28
+        },
+        "delivery_issue": {
+          "precision": 0.9259,
+          "recall": 0.9259,
+          "f1": 0.9259,
+          "support": 27
+        },
+        "general_inquiry": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 25
+        },
+        "order_cancellation_return": {
+          "precision": 1.0,
+          "recall": 0.8462,
+          "f1": 0.9167,
+          "support": 26
+        },
+        "product_quality_issue": {
+          "precision": 1.0,
+          "recall": 0.963,
+          "f1": 0.9811,
+          "support": 27
+        },
+        "seller_third_party_issue": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 19
+        },
+        "subscription_membership_issue": {
+          "precision": 0.9167,
+          "recall": 1.0,
+          "f1": 0.9565,
+          "support": 22
+        }
+      },
+      "confusion_matrix": [
+        [
+          26,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          27,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          25,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          25,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          22,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0,
+          26,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          19,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          22
+        ]
+      ],
+      "labels": [
+        "account_access_issue",
+        "billing_payment_issue",
+        "delivery_issue",
+        "general_inquiry",
+        "order_cancellation_return",
+        "product_quality_issue",
+        "seller_third_party_issue",
+        "subscription_membership_issue"
+      ],
+      "n_samples": 200,
+      "macro_f1_ci": [
+        0.9325,
+        0.9855
+      ]
+    },
+    "escalation": {
+      "precision": 0.2542,
+      "recall": 0.5357,
+      "f1": 0.3448,
+      "true_positives": 30,
+      "true_negatives": 56,
+      "false_positives": 88,
+      "false_negatives": 26,
+      "false_auto_handle_rate": 0.4643,
+      "unnecessary_escalation_rate": 0.6111,
+      "n_samples": 200,
+      "confusion_matrix": [
+        [
+          56,
+          88
+        ],
+        [
+          26,
+          30
+        ]
+      ],
+      "f1_ci": [
+        0.2561,
+        0.4343
+      ]
+    }
+  },
+  "majority": {
+    "intent": {
+      "accuracy": 0.095,
+      "macro_f1": 0.0217,
+      "weighted_f1": 0.0165,
+      "per_intent": {
+        "account_access_issue": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 26
+        },
+        "billing_payment_issue": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 28
+        },
+        "delivery_issue": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 27
+        },
+        "general_inquiry": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 25
+        },
+        "order_cancellation_return": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 26
+        },
+        "product_quality_issue": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 27
+        },
+        "seller_third_party_issue": {
+          "precision": 0.095,
+          "recall": 1.0,
+          "f1": 0.1735,
+          "support": 19
+        },
+        "subscription_membership_issue": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 22
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          26,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          28,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          27,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          25,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          26,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          27,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          19,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          22,
+          0
+        ]
+      ],
+      "labels": [
+        "account_access_issue",
+        "billing_payment_issue",
+        "delivery_issue",
+        "general_inquiry",
+        "order_cancellation_return",
+        "product_quality_issue",
+        "seller_third_party_issue",
+        "subscription_membership_issue"
+      ],
+      "n_samples": 200
+    },
+    "escalation": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "true_positives": 0,
+      "true_negatives": 144,
+      "false_positives": 0,
+      "false_negatives": 56,
+      "false_auto_handle_rate": 1.0,
+      "unnecessary_escalation_rate": 0.0,
+      "n_samples": 200,
+      "confusion_matrix": [
+        [
+          144,
+          0
+        ],
+        [
+          56,
+          0
+        ]
+      ]
+    }
+  },
+  "tfidf": {
+    "intent": {
+      "accuracy": 0.96,
+      "macro_f1": 0.9616,
+      "weighted_f1": 0.9597,
+      "per_intent": {
+        "account_access_issue": {
+          "precision": 0.963,
+          "recall": 1.0,
+          "f1": 0.9811,
+          "support": 26
+        },
+        "billing_payment_issue": {
+          "precision": 0.9,
+          "recall": 0.9643,
+          "f1": 0.931,
+          "support": 28
+        },
+        "delivery_issue": {
+          "precision": 0.9259,
+          "recall": 0.9259,
+          "f1": 0.9259,
+          "support": 27
+        },
+        "general_inquiry": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 25
+        },
+        "order_cancellation_return": {
+          "precision": 1.0,
+          "recall": 0.8462,
+          "f1": 0.9167,
+          "support": 26
+        },
+        "product_quality_issue": {
+          "precision": 1.0,
+          "recall": 0.963,
+          "f1": 0.9811,
+          "support": 27
+        },
+        "seller_third_party_issue": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 19
+        },
+        "subscription_membership_issue": {
+          "precision": 0.9167,
+          "recall": 1.0,
+          "f1": 0.9565,
+          "support": 22
+        }
+      },
+      "confusion_matrix": [
+        [
+          26,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          27,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          25,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          25,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          22,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0,
+          26,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          19,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          22
+        ]
+      ],
+      "labels": [
+        "account_access_issue",
+        "billing_payment_issue",
+        "delivery_issue",
+        "general_inquiry",
+        "order_cancellation_return",
+        "product_quality_issue",
+        "seller_third_party_issue",
+        "subscription_membership_issue"
+      ],
+      "n_samples": 200
+    },
+    "escalation": {
+      "precision": 0.2544,
+      "recall": 0.5179,
+      "f1": 0.3412,
+      "true_positives": 29,
+      "true_negatives": 59,
+      "false_positives": 85,
+      "false_negatives": 27,
+      "false_auto_handle_rate": 0.4821,
+      "unnecessary_escalation_rate": 0.5903,
+      "n_samples": 200,
+      "confusion_matrix": [
+        [
+          59,
+          85
+        ],
+        [
+          27,
+          29
+        ]
+      ]
+    }
+  }
+}

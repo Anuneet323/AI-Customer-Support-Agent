@@ -1,0 +1,118 @@
+# ──────────────────────────────────────────────────────────────
+# Master configuration file
+# All tunable parameters live here. No magic constants in code.
+# ──────────────────────────────────────────────────────────────
+
+project:
+  name: "hiver-ai-support-agent"
+  version: "1.0.0"
+  random_seed: 42
+
+# ── Data ───────────────────────────────────────────────────────
+data:
+  raw_path: "data/raw/twcs.csv"
+  sample_path: "data/sample/sample.jsonl"
+  processed_path: "data/processed/"
+  
+  # Sampling strategy
+  brand: "AmazonHelp"           # Set after brand selection script runs
+  max_conversations: 30000      # Cap for reproducibility (<15 min run)
+  sample_conversations: 5000    # Working sample size
+  min_conversation_length: 2    # Minimum turns (customer + brand)
+  min_text_length: 10           # Minimum characters per message
+  
+  # Deduplication
+  dedup_threshold: 0.92         # Cosine similarity threshold for near-dedup
+  
+  # Splits (fractions, must sum to 1.0)
+  train_fraction: 0.70
+  val_fraction: 0.15
+  test_fraction: 0.15           # Held out; golden set drawn from here
+  
+  # Retrieval index excludes golden set conversation IDs
+  golden_set_path: "evaluation/golden_set.jsonl"
+
+# ── Intent ─────────────────────────────────────────────────────
+intent:
+  taxonomy_path: "configs/intents.yaml"
+  min_examples_per_intent: 20   # Minimum training examples
+  
+  # Classifier
+  llm_temperature: 0.0          # Deterministic
+  max_retries: 3
+  
+  # Confidence threshold — below this → escalation signal
+  confidence_threshold: 0.65
+
+# ── Retrieval ──────────────────────────────────────────────────
+retrieval:
+  index_path: "data/faiss_index/"
+  embedding_model: "models/gemini-embedding-001"
+  embedding_dim: 768
+  
+  top_k: 3
+  
+  # Evidence quality gate
+  min_similarity: 0.60          # Below this → escalation signal
+  max_similarity_for_dedup: 0.98  # Above this → likely same thread (exclude)
+  
+  # Must retrieve ≥ min_consistent cases with matching intent
+  min_intent_consistent: 1
+
+# ── Generation ─────────────────────────────────────────────────
+generation:
+  model: "models/gemini-flash-latest"
+  temperature: 0.3
+  max_output_tokens: 512
+  max_retries: 3
+  prompt_version: "v1"
+  prompts_dir: "configs/prompts/"
+
+# ── Escalation ─────────────────────────────────────────────────
+escalation:
+  # Any of these triggers escalation
+  triggers:
+    low_intent_confidence: true     # intent_confidence < intent.confidence_threshold
+    low_retrieval_similarity: true  # max similarity < retrieval.min_similarity
+    no_intent_consistent_cases: true
+    multi_intent_detected: true
+    sensitive_keywords: true
+    max_reply_attempts_exceeded: true
+  
+  # Keywords that always trigger escalation (financial/account sensitive)
+  sensitive_keywords:
+    - "fraud"
+    - "unauthorized"
+    - "lawsuit"
+    - "legal"
+    - "police"
+    - "hack"
+    - "stolen"
+    - "refund"        # Keep; historically requires human verification
+    - "chargeback"
+    - "death"
+    - "disability"
+    - "emergency"
+
+# ── Evaluation ─────────────────────────────────────────────────
+evaluation:
+  golden_set_path: "evaluation/golden_set.jsonl"
+  results_dir: "experiments/results/"
+  
+  # LLM judge
+  judge_model: "models/gemini-pro-latest"
+  judge_temperature: 0.0
+  judge_prompt_version: "v1"
+  
+  # Human agreement subset
+  human_agreement_n: 50
+  
+  # Bootstrap
+  bootstrap_n: 1000
+  bootstrap_ci: 0.95
+
+# ── Logging ────────────────────────────────────────────────────
+logging:
+  level: "INFO"
+  dir: "logs/"
+  format: "%(asctime)s | %(levelname)-8s | %(name)s | %(message)s"

@@ -1,0 +1,70 @@
+{
+  "n": 50,
+  "dimensions": {
+    "correctness": {
+      "mean_absolute_difference": 0.06,
+      "exact_agreement": 0.94,
+      "within_one_agreement": 1.0,
+      "spearman_r": 0.924,
+      "spearman_p": 0.0,
+      "human_mean": 4.56,
+      "llm_mean": 4.58
+    },
+    "groundedness": {
+      "mean_absolute_difference": 0.0,
+      "exact_agreement": 1.0,
+      "within_one_agreement": 1.0,
+      "spearman_r": 1.0,
+      "spearman_p": 0.0,
+      "human_mean": 3.88,
+      "llm_mean": 3.88
+    },
+    "resolution": {
+      "mean_absolute_difference": 0.24,
+      "exact_agreement": 0.76,
+      "within_one_agreement": 1.0,
+      "spearman_r": 0.867,
+      "spearman_p": 0.0,
+      "human_mean": 3.1,
+      "llm_mean": 3.34
+    },
+    "tone": {
+      "mean_absolute_difference": 0.2,
+      "exact_agreement": 0.8,
+      "within_one_agreement": 1.0,
+      "spearman_r": 0.835,
+      "spearman_p": 0.0,
+      "human_mean": 4.42,
+      "llm_mean": 4.62
+    },
+    "non_hallucination": {
+      "mean_absolute_difference": 0.0,
+      "exact_agreement": 1.0,
+      "within_one_agreement": 1.0,
+      "spearman_r": 1.0,
+      "spearman_p": 0.0,
+      "human_mean": 4.68,
+      "llm_mean": 4.68
+    },
+    "overall": {
+      "mean_absolute_difference": 0.02,
+      "exact_agreement": 0.98,
+      "within_one_agreement": 1.0,
+      "spearman_r": 1.0,
+      "spearman_p": 0.0,
+      "human_mean": 4.28,
+      "llm_mean": 4.26
+    }
+  },
+  "overall": {
+    "mean_absolute_difference": 0.02,
+    "exact_agreement": 0.98,
+    "within_one_agreement": 1.0,
+    "spearman_r": 1.0,
+    "spearman_p": 0.0,
+    "weighted_kappa": 0.972,
+    "human_mean": 4.28,
+    "llm_mean": 4.26,
+    "interpretation": "Strong agreement -- LLM judge is a reliable proxy for human judgment"
+  }
+}

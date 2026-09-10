@@ -1,0 +1,30 @@
+{
+  "no_retrieval": {
+    "intent_accuracy": 0.96,
+    "intent_macro_f1": 0.9616,
+    "escalation_f1": 0.4375,
+    "false_auto_handle_rate": 0.0,
+    "n_samples": 200
+  },
+  "top_k_1": {
+    "intent_accuracy": 0.96,
+    "intent_macro_f1": 0.9616,
+    "escalation_f1": 0.3548,
+    "false_auto_handle_rate": 0.4107,
+    "n_samples": 200
+  },
+  "top_k_3": {
+    "intent_accuracy": 0.96,
+    "intent_macro_f1": 0.9616,
+    "escalation_f1": 0.44,
+    "false_auto_handle_rate": 0.0179,
+    "n_samples": 200
+  },
+  "top_k_5": {
+    "intent_accuracy": 0.96,
+    "intent_macro_f1": 0.9616,
+    "escalation_f1": 0.4375,
+    "false_auto_handle_rate": 0.0,
+    "n_samples": 200
+  }
+}

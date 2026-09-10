@@ -1,0 +1,69 @@
+# Environment and secrets
+.env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+env/
+*.egg
+
+# Data (large raw files ignored, small curated splits tracked)
+data/raw/*.csv
+data/raw/*.json
+data/raw/*.parquet
+*.csv
+*.parquet
+*.pkl
+*.pickle
+
+# FAISS index (track small curated index for instant reproduction)
+# data/faiss_index/ is tracked for instant out-of-the-box demo
+
+# Logs & testing caches
+logs/
+*.log
+.pytest_cache/
+
+# Experiment results (track summaries, ignore large intermediate dumps)
+experiments/results/results_*.jsonl
+experiments/results/ablation_*.jsonl
+experiments/results/demo_output.json
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# ──────────────────────────────────────────────────────────────
+# DO commit (explicit whitelist guarantees):
+# - evaluation/golden_set.jsonl
+# - evaluation/human_judgments.json
+# - experiments/results/*.json (summary stats, agreement, failure modes)
+# - configs/ (all YAML and prompt markdown)
+# ──────────────────────────────────────────────────────────────
+!data/raw/README.md
+!evaluation/golden_set.jsonl
+!evaluation/human_judgments.json
+!experiments/results/summary_metrics.json
+!experiments/results/agreement_stats.json
+!experiments/results/failure_modes.json
+!experiments/results/ablation_summary.json
+!experiments/results/llm_judge_scores_agreement_subset.json
+!experiments/results/summary*.json

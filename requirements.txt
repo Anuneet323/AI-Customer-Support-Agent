@@ -1,0 +1,42 @@
+# Core scientific stack
+numpy>=1.26
+pandas>=2.1
+scipy>=1.11
+scikit-learn>=1.4
+
+# Google Gemini (LLM + embeddings)
+google-generativeai>=0.7.0
+python-dotenv>=1.0
+
+# Vector search
+faiss-cpu>=1.8.0
+
+# HTTP / retries
+tenacity>=8.2
+requests>=2.31
+
+# Data validation
+pydantic>=2.5
+
+# Evaluation
+# (BLEU/ROUGE kept as secondary; primary is LLM judge)
+nltk>=3.8
+rouge-score>=0.1.2
+
+# Visualization / reporting
+matplotlib>=3.8
+seaborn>=0.13
+tabulate>=0.9
+
+# Testing
+pytest>=7.4
+pytest-cov>=4.1
+
+# Utilities
+tqdm>=4.66
+pyyaml>=6.0
+colorlog>=6.8
+jsonlines>=4.0
+
+# Text processing
+regex>=2023.10

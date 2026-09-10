@@ -1,0 +1,187 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# configs/intents.yaml
+# ─────────────────────
+# Intent taxonomy for AmazonHelp customer support.
+#
+# Derived from: data-driven clustering on TWCS AmazonHelp conversations,
+# followed by manual review and consolidation into 8 mutually exclusive intents.
+#
+# Design principles:
+#   1. Mutually exclusive: each message maps to exactly one intent.
+#   2. Collectively exhaustive: all common Amazon customer issues are covered.
+#   3. Operationally distinct: each intent maps to a different resolution pathway.
+#   4. At least 3 examples per intent (for few-shot prompting).
+#
+# Version: v1 (finalised)
+# ──────────────────────────────────────────────────────────────────────────────
+
+version: "v1"
+brand: "AmazonHelp"
+description: >
+  Intent taxonomy for AmazonHelp Twitter customer support.
+  8 intents covering the full spectrum of Amazon customer issues.
+
+intents:
+
+  - name: "delivery_issue"
+    definition: >
+      Customer reports a package that is missing, delayed, shows as delivered
+      but not received, or is stuck in transit.
+    inclusion_criteria: >
+      Use when the customer's primary concern is the physical delivery status of
+      an order: not received, wrong tracking status, carrier-related problems,
+      delivery to wrong address.
+    exclusion_criteria: >
+      Do NOT use if the main concern is a damaged/defective product (use
+      product_quality_issue), an order cancellation request (use
+      order_cancellation_return), or a billing dispute (use billing_payment_issue).
+    examples:
+      - "My package says delivered but I never received it"
+      - "My order has been stuck in transit for 5 days, no update"
+      - "The tracking says out for delivery but nothing arrived"
+      - "I ordered 2 weeks ago and it still hasn't shipped"
+      - "My package was delivered to the wrong address"
+    approximate_prevalence: 0.28
+
+  - name: "order_cancellation_return"
+    definition: >
+      Customer wants to cancel an order, return a product, or get a refund for
+      a return/cancellation they have already initiated or are requesting.
+    inclusion_criteria: >
+      Use when the customer explicitly wants to cancel before delivery, return
+      after delivery, or asks about the refund process for a return.
+    exclusion_criteria: >
+      Do NOT use for billing disputes or unauthorised charges (use
+      billing_payment_issue). Do NOT use if the product itself is broken/defective
+      AND the customer only mentions damage without requesting a return
+      (use product_quality_issue).
+    examples:
+      - "I want to cancel my order before it ships"
+      - "How do I return an item I received?"
+      - "I returned my package 2 weeks ago but haven't received my refund yet"
+      - "Can I cancel this order? I ordered by mistake"
+      - "I need to return this, the size is wrong"
+    approximate_prevalence: 0.18
+
+  - name: "product_quality_issue"
+    definition: >
+      Customer received a product that is broken, damaged, defective, not as
+      described, counterfeit, or missing parts.
+    inclusion_criteria: >
+      Use when the complaint is about the condition or quality of the physical
+      product itself: arrived broken, doesn't work, wrong item sent, missing
+      accessories, fake/counterfeit product.
+    exclusion_criteria: >
+      Do NOT use for delivery problems (item not arrived at all — use
+      delivery_issue). If the customer is requesting a return/refund for the
+      defective item, this can co-exist but classify by primary complaint.
+    examples:
+      - "The item I received is broken, screen is cracked"
+      - "This product stopped working after 2 days"
+      - "I received a completely different item than what I ordered"
+      - "The product is a fake — packaging looks off and quality is terrible"
+      - "My package arrived and two pieces are missing from the box"
+    approximate_prevalence: 0.15
+
+  - name: "billing_payment_issue"
+    definition: >
+      Customer reports a billing error, unexpected charge, double charge, incorrect
+      amount, or has a question about a charge on their account.
+    inclusion_criteria: >
+      Use when the primary concern is about money charged or not charged: wrong
+      amount billed, charged after cancellation, duplicate charge, unrecognised
+      charge, price discrepancy.
+    exclusion_criteria: >
+      Do NOT use for refund requests tied to a return (use
+      order_cancellation_return). Do NOT use for account access issues unrelated
+      to billing (use account_access_issue).
+    examples:
+      - "I was charged twice for the same order"
+      - "Why was I charged $99 for Prime? I cancelled months ago"
+      - "There's an unauthorised charge on my account I didn't make"
+      - "The price shown was different from what I was charged"
+      - "I see a charge from Amazon I don't recognise"
+    approximate_prevalence: 0.12
+
+  - name: "account_access_issue"
+    definition: >
+      Customer cannot access their account, is locked out, cannot reset their
+      password, or has issues with authentication or two-factor verification.
+    inclusion_criteria: >
+      Use when the customer's primary blocker is getting into their account:
+      forgotten password, locked account, login errors, verification code issues,
+      account hacked (where access is lost).
+    exclusion_criteria: >
+      Do NOT use if the account issue is purely about billing (use
+      billing_payment_issue). Do NOT use for Prime membership questions that
+      don't involve access (use subscription_membership_issue).
+    examples:
+      - "I can't log into my account, says wrong password but I know it's right"
+      - "My account has been locked. I need to reset my password"
+      - "I'm not receiving the verification code to my phone"
+      - "Someone hacked my account and changed my email, I can't get in"
+      - "Two-factor authentication is not working for me"
+    approximate_prevalence: 0.10
+
+  - name: "subscription_membership_issue"
+    definition: >
+      Customer has a question or problem with Amazon Prime, Prime Video, or
+      another Amazon subscription: renewal, cancellation, benefits, sharing,
+      or trial-to-paid conversion.
+    inclusion_criteria: >
+      Use for any issue specifically related to Prime or subscription features:
+      how to cancel Prime, Prime benefits not working, Prime renewal charge
+      questions, Prime sharing with family, free trial expiry.
+    exclusion_criteria: >
+      Do NOT use if the issue is about an order placed with Prime (use
+      delivery_issue or order_cancellation_return). Do NOT use for login/access
+      to Prime Video (use account_access_issue).
+    examples:
+      - "How do I cancel my Amazon Prime subscription?"
+      - "I was charged for Prime but I thought I cancelled it"
+      - "My Prime free trial ended and I don't want to pay the full price"
+      - "I'm a Prime member but not getting free shipping"
+      - "Can I share my Prime membership with my family?"
+    approximate_prevalence: 0.08
+
+  - name: "seller_third_party_issue"
+    definition: >
+      Customer has an issue with a third-party seller on Amazon Marketplace:
+      seller not responding, incorrect listing, seller shipping problems, or
+      disputes with a marketplace seller.
+    inclusion_criteria: >
+      Use when the problem involves a third-party seller rather than Amazon
+      directly: marketplace seller unreachable, item as described by seller
+      doesn't match, seller-fulfilled order issues.
+    exclusion_criteria: >
+      Do NOT use for issues with Amazon-fulfilled orders (use delivery_issue or
+      product_quality_issue). If the customer is confused about who is the
+      seller, classify based on the type of complaint.
+    examples:
+      - "I bought from a third-party seller and they're not responding to my messages"
+      - "The seller description said new but I received a used item"
+      - "The third-party seller shipped my order 2 weeks late"
+      - "I need to dispute a purchase from an Amazon marketplace seller"
+      - "The seller's listing was completely misleading about the product"
+    approximate_prevalence: 0.05
+
+  - name: "general_inquiry"
+    definition: >
+      Customer has a general question about Amazon services, policies, features,
+      or needs help navigating the website/app that doesn't fit a more specific
+      category.
+    inclusion_criteria: >
+      Use when the customer is asking a how-to question, a policy question, or
+      needs general guidance: how to leave a review, how gift cards work, where
+      to find their order history, how to change an address, etc.
+    exclusion_criteria: >
+      Do NOT use if the question is specifically about billing, account access,
+      delivery, returns, subscriptions, or product quality — use the more
+      specific intent instead.
+    examples:
+      - "How do I leave a product review on Amazon?"
+      - "Where can I find my order history?"
+      - "How do Amazon gift cards work? Can I use them for everything?"
+      - "Can I change my delivery address after placing an order?"
+      - "How do I update my payment method?"
+    approximate_prevalence: 0.04
