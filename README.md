@@ -182,6 +182,5 @@ python experiments/run_experiments.py --ablation all
 
 - [`report/report.md`](report/report.md): Formal 6-page technical report with executive summary, methodology, failure modes, and deployment architecture.
 - [`DECISION_LOG.md`](DECISION_LOG.md): Detailed rationales and trade-offs for 15 core architectural decisions.
-- [`INTERVIEW_NOTES.md`](INTERVIEW_NOTES.md): Exhaustive live technical interview preparation and system defense guide.
 - [`SUBMISSION_CHECKLIST.md`](SUBMISSION_CHECKLIST.md): Point-by-point compliance table verifying every assignment requirement.
 - [`CITATIONS.md`](CITATIONS.md): Formal academic and technical citations for datasets, tools, and algorithms.
